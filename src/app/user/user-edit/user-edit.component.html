@@ -1,0 +1,12 @@
+<form (ngSubmit)="editUser()" [formGroup]="newUserForm">
+  <label>Name</label>
+  <label><input type="text" id="name" class="form-control" formControlName="name"></label>
+  <label>Email</label>
+  <label><input type="text" id="email" class="form-control" formControlName="email"></label>
+  <label>Group</label>
+  <label formGroupName="groups">
+    <select formControlName="id">
+      <option *ngFor="let group of groups" value="{{group.id}}">{{group.name}}</option>
+    </select></label>
+  <button type="submit">Edit</button>
+</form>

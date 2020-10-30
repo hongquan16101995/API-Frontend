@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="col-md-12 col-lg-12" style="text-align: center; margin: 10px">
+    <h1>User list</h1>
+  </div>
+  <div class="col-md-8 col-lg-8" style="float: left; margin: 10px">
+    {{message}} {{user | json}}
+  </div>
+  <div class="col-md-1 col-lg-1" style="float: right; margin: 10px">
+    <button class="btn btn-outline-primary" routerLink="create">Create</button>
+  </div>
+  <div>
+    <table class="table table">
+      <tr style="text-align: center">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Group</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <tr  style="text-align: center" *ngFor="let user of userList; index as i">
+        <td>{{i + 1}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.role}}</td>
+        <td>{{user.groups.name}}</td>
+        <td>
+          <button class="btn btn-primary" [routerLink]="[user.id]">Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

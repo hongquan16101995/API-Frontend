@@ -1,0 +1,36 @@
+<h2 class="text-center">User registration</h2>
+<form [formGroup]="newUserForm" (ngSubmit)="createUser()" class="col-md-6 offset-md-3">
+  <div class="form-group row">
+    <label class="col">
+      Name
+      <input type="email" class="form-control" formControlName="name">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="newUserForm.get('name').invalid && newUserForm.get('name').touched">
+    <span *ngIf="newUserForm.get('name').hasError('required') && newUserForm.get('name').touched">
+      Name cannot be left blank!</span>
+    <span *ngIf="newUserForm.get('name').hasError('maxlength')">Name must not exceed 50 characters!</span>
+  </div>
+  <div class="form-group row">
+    <label class="col">
+      Email
+      <input type="email" class="form-control" formControlName="email">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="newUserForm.get('email').invalid && newUserForm.get('email').touched">
+    <span *ngIf="newUserForm.get('email').hasError('required') && newUserForm.get('email').touched">
+      Email cannot be left blank!</span>
+    <span *ngIf="newUserForm.get('email').hasError('email')">Invalid email!</span>
+  </div>
+  <div class="form-group row">
+    <label class="col" formGroupName="groups">
+      Group &nbsp;
+      <select formControlName="id">
+        <option *ngFor="let group of groups" value="{{group.id}}">{{group.name}}</option>
+      </select>
+    </label>
+  </div>
+  <div class="form-group" style="text-align: center" >
+    <button class="btn btn-info" type="submit">Submit</button>
+  </div>
+</form>
